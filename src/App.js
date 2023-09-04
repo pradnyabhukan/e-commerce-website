@@ -14,7 +14,7 @@ function App() {
     window.sessionStorage.setItem('cart', JSON.stringify(cart));
   },[])
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/e-commerce-website'>
     <CartContext.Provider value={{cart, setCart}}>
       <Routes>
         <Route path='/' element={<Home/>}/>
