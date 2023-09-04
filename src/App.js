@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Product from './components/Product';
 import Cart from './components/Cart';
 import {createContext, useState, useEffect } from 'react';
+import AppNavbar from './components/Navbar';
 
 export const CartContext = createContext();
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <BrowserRouter basename='/e-commerce-website'>
     <CartContext.Provider value={{cart, setCart}}>
+      <AppNavbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/product/:id' element={<Product/>}/>

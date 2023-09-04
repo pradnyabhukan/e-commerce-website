@@ -44,6 +44,7 @@ export default function Cart() {
         cart.forEach(element => {
             total += (element.item.price * element.qty);
         });
+        total = parseFloat(total.toFixed(3));
         setPrice(total);
         console.log("handle price called: ", price);
     }
@@ -61,64 +62,75 @@ export default function Cart() {
     console.log(cart)
     return (
         <Container>
-            <Row className="d-flex justify-content-between m-5">
-                <Col><h1>Cart</h1></Col>
-                <Col className="text-end">
-                    <Link to="/" className="link"><h3>Home</h3></Link>
-                </Col>
-            </Row>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Item Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {cart?.map((item, i) => {
-                        let product = item.item;
-                        const isDeleted = deletedItem === i;
-                        return (
-                            
-                            <tr key={i} className={isDeleted ? 'delete-horizontal-animation' : ''}>
-                            <td>{i + 1}</td>
-                            <td>{product.title}</td>
-                            <td>${product.price}</td>
-                            <td>
-                              <ButtonGroup>
-                                <Button
-                                  variant="outline-primary"
-                                  id="add"
-                                  onClick={(e) => {
-                                    handleQty(item, e);
-                                  }}
-                                >
-                                  +
-                                </Button>
-                                <span className="m-2">{item.qty}</span>
-                                <Button
-                                  id="sub"
-                                  variant="outline-primary"
-                                  disabled={item.qty === 0}
-                                  onClick={(e) => handleQty(item, e)}
-                                >
-                                  -
-                                </Button>
-                              </ButtonGroup>
-                            </td>
-                            <td>
-                                <Button onClick={() => handleDeleteAnimation(i)}>Delete</Button>
-                            </td>
-                          </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
+            <div className="text-center p-4">
+                <h1>Cart</h1>
+            </div>
+            {
+                (cart.length === 0) ? ( 
+                    <div className="container text-center">
+                        <h3>Looks like your cart is empty!</h3>
+                        <Button><Link to={"/"} className="link" style={{color : "white"}}>Start Shopping</Link></Button>
+                    </div>
+                ) 
+                : (
+                    <div>
+                        <Table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Item Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                    cart?.map((item, i) => {
+                                        let product = item.item;
+                                        const isDeleted = deletedItem === i;
+                                        return (
+                                            
+                                            <tr key={i} className={isDeleted ? 'delete-horizontal-animation' : ''}>
+                                            <td>{i + 1}</td>
+                                            <td>{product.title}</td>
+                                            <td>${product.price}</td>
+                                            <td>
+                                            <ButtonGroup>
+                                                <Button
+                                                variant="outline-primary"
+                                                id="add"
+                                                onClick={(e) => {
+                                                    handleQty(item, e);
+                                                }}
+                                                >
+                                                +
+                                                </Button>
+                                                <span className="m-2">{item.qty}</span>
+                                                <Button
+                                                id="sub"
+                                                variant="outline-primary"
+                                                disabled={item.qty === 0}
+                                                onClick={(e) => handleQty(item, e)}
+                                                >
+                                                -
+                                                </Button>
+                                            </ButtonGroup>
+                                            </td>
+                                            <td>
+                                                <Button onClick={() => handleDeleteAnimation(i)}>Delete</Button>
+                                            </td>
+                                        </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </Table>
 
-            <p>Total Price: ${price}</p>
+                            <p>Total Price: ${price}</p>
+                    </div>
+                )
+            }
+            
         </Container>
     )
 }
