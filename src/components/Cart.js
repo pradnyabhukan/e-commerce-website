@@ -1,9 +1,7 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, ButtonGroup, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Container, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CartContext } from "../App";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 export default function Cart() {
 
@@ -74,9 +72,9 @@ export default function Cart() {
                 ) 
                 : (
                     <div>
-                        <Table>
+                        <Table className="custom-table table-primary">
                                 <thead>
-                                    <tr>
+                                    <tr className="">
                                         <th>#</th>
                                         <th>Item Name</th>
                                         <th>Price</th>
@@ -91,8 +89,8 @@ export default function Cart() {
                                         const isDeleted = deletedItem === i;
                                         return (
                                             
-                                            <tr key={i} className={isDeleted ? 'delete-horizontal-animation' : ''}>
-                                            <td>{i + 1}</td>
+                                            <tr  key={i} className={isDeleted ? 'delete-horizontal-animation' : ''}>
+                                            <td >{i + 1}</td>
                                             <td>{product.title}</td>
                                             <td>${product.price}</td>
                                             <td>

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./styles.css"
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Lora&family=Roboto:wght@300&display=swap');
+</style>
 
 export default function Home() {
     const [categories, setCategories] = useState([]);
@@ -43,21 +46,25 @@ export default function Home() {
 
     return (
         <Container className="d-flex flex-column text-center justify-content-center">
-            <Link to={"/"} className="link"><h1 className="p-4">E Commerce Website</h1></Link>
+            <Link to={"/"} className="link"><h1 className="p-4">SHOP NEST</h1></Link>
 
             <Row className="p-4">
-                <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>All products</Col>
+                <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>
+                    <p>All products</p>
+                </Col>
                 {
                     categories?.map((element) => {
                         const category = element.charAt(0).toUpperCase() + element.slice(1);
                         return (
-                            <Col key={element} className={`m-2 categories ${activeCategory === element ? 'activeCategory' : ''}`} onClick={()=>{getCategoryProduct(element);}}>{category}</Col>
+                            <Col key={element} className={`m-2 categories ${activeCategory === element ? 'activeCategory' : ''}`} onClick={()=>{getCategoryProduct(element);}}>
+                                <p>{category}</p>
+                            </Col>
                         )
                     }
                     )
                 }
                 
-                <Col className={"m-2 categories"}><Link to={"/cart"} className="link">Cart</Link></Col>
+                
             </Row>
             <Row>
                 {
@@ -68,8 +75,8 @@ export default function Home() {
                                 <Card className="card m-2">
                                     <Card.Body>
                                         <Card.Img className="card-image" src={product.image}/>
-                                            <Card.Title className="pt-4 card-title text-start">{product.title}</Card.Title>
-                                            <Card.Text className="text-start">${product.price}</Card.Text>
+                                            <Card.Title className="pt-4 card-title text-start"><p>{product.title}</p></Card.Title>
+                                            <Card.Text className="text-start"><p>${product.price}</p></Card.Text>
                                     </Card.Body>
                                 </Card>
                                 </Link>

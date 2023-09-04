@@ -46,7 +46,7 @@ export default function Product(){
                     <Button onClick={handleAddToCart} className={isAdded ? 'added-to-cart' : ''}>{isAdded ? 'Added to Cart!' : 'Add to Cart'}</Button>
                     {isAdded && (
                         <div className="pt-3 px-1">
-                        <Link to={"/cart"} className="link">Go to cart</Link>
+                        <Link to={"/cart"} className="">Go to cart</Link>
                         </div>
                     )}
                 </Col>
