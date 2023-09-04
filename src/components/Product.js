@@ -16,9 +16,9 @@ export default function Product(){
 
     const handleAddToCart = () =>{
         if(!isAdded){
-            const cart = JSON.parse(localStorage.getItem('cart'));
+            const cart = JSON.parse(window.sessionStorage.getItem('cart'));
             const addItem = [...cart, {item : product, qty : 1}];
-            localStorage.setItem('cart', JSON.stringify(addItem));
+            window.sessionStorage.setItem('cart', JSON.stringify(addItem));
             setCart(addItem);
         }
         setIsAdded(true);

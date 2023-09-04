@@ -9,9 +9,9 @@ import {createContext, useState, useEffect } from 'react';
 export const CartContext = createContext();
 
 function App() {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [cart, setCart] = useState(JSON.parse(window.sessionStorage.getItem('cart')) || []);
   useEffect(()=>{
-    localStorage.setItem('cart', JSON.stringify(cart));
+    window.sessionStorage.setItem('cart', JSON.stringify(cart));
   },[])
   return (
     <BrowserRouter>

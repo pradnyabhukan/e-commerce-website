@@ -33,7 +33,7 @@ export default function Cart() {
             }
         });
         setCart(changeItem);
-        localStorage.setItem('cart', JSON.stringify(changeItem));
+        window.sessionStorage.setItem('cart', JSON.stringify(changeItem));
 
     }
 
@@ -51,7 +51,7 @@ export default function Cart() {
     const handleDelete = (index) => {
         const temp = [...cart];
         temp.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(temp));
+        window.sessionStorage.setItem('cart', JSON.stringify(temp));
         setCart(temp);
     }
 
