@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/e-commerce-website/static/css/main.fea14e88.css",
-    "main.js": "/e-commerce-website/static/js/main.332c3a3b.js",
+    "main.css": "/e-commerce-website/static/css/main.e1264508.css",
+    "main.js": "/e-commerce-website/static/js/main.0bdc890f.js",
     "static/js/787.85614a1b.chunk.js": "/e-commerce-website/static/js/787.85614a1b.chunk.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/e-commerce-website/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/fontawesome-webfont.eot": "/e-commerce-website/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/e-commerce-website/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/hero-image.png": "/e-commerce-website/static/media/hero-image.83f220112ac3d16e429e.png",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/e-commerce-website/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/e-commerce-website/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "static/media/logo.svg": "/e-commerce-website/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/e-commerce-website/index.html",
-    "main.fea14e88.css.map": "/e-commerce-website/static/css/main.fea14e88.css.map",
-    "main.332c3a3b.js.map": "/e-commerce-website/static/js/main.332c3a3b.js.map",
+    "main.e1264508.css.map": "/e-commerce-website/static/css/main.e1264508.css.map",
+    "main.0bdc890f.js.map": "/e-commerce-website/static/js/main.0bdc890f.js.map",
     "787.85614a1b.chunk.js.map": "/e-commerce-website/static/js/787.85614a1b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fea14e88.css",
-    "static/js/main.332c3a3b.js"
+    "static/css/main.e1264508.css",
+    "static/js/main.0bdc890f.js"
   ]
 }
