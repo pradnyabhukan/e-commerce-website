@@ -72,7 +72,7 @@ export default function Cart() {
                 ) 
                 : (
                     <div>
-                        <Table className="custom-table table-primary">
+                        <Table className="custom-table ">
                                 <thead>
                                     <tr className="">
                                         <th>#</th>

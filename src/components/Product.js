@@ -1,23 +1,26 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CartContext } from "../App";
+import Products from "./Products";
 
-export default function Product(){
+export default function Product() {
     const { id } = useParams();
     const [isAdded, setIsAdded] = useState(false);
     const [product, setProduct] = useState();
-    const {cart, setCart} = useContext(CartContext);
-    const getProduct = async() =>{
+    const [similarProducts, setSimilarProducts] = useState([]);
+    const { cart, setCart } = useContext(CartContext);
+    const getProduct = async () => {
         const data = await fetch(`https://fakestoreapi.com/products/${id}`);
         const pData = await data.json();
         setProduct(pData);
+        getCategoryProduct(pData.category)
     }
 
-    const handleAddToCart = () =>{
-        if(!isAdded){
+    const handleAddToCart = () => {
+        if (!isAdded) {
             const cart = JSON.parse(window.sessionStorage.getItem('cart'));
-            const addItem = [...cart, {item : product, qty : 1}];
+            const addItem = [...cart, { item: product, qty: 1 }];
             window.sessionStorage.setItem('cart', JSON.stringify(addItem));
             setCart(addItem);
         }
@@ -25,31 +28,70 @@ export default function Product(){
 
     }
 
-    useEffect(()=>{
-        getProduct();
-    }, [])
-    console.log(product);
+    const getCategoryProduct = async (c) => {
+        console.log("called")
+        const data = await fetch(`https://fakestoreapi.com/products/category/${c}`);
+        const sData = await data.json();
+        const filteredProducts = sData.filter((item) => item.id!= id );
+        const limitProducts = filteredProducts.slice(0, 4);
+        setSimilarProducts(limitProducts);
+    }
 
-    return(
-        <Container className="d-flex flex-column text-center align-items-center justify-content-center">
-            <Link to={"/"} className="link"><h1 className="p-4">E Commerce Website</h1></Link>
-            <Row className=" mt-5 pt-5 align-items-center">
-                <Col>
+    useEffect(() => {
+        getProduct();
+        getCategoryProduct(product?.category);
+    }, [id]);
+
+    const totalStars = 5;
+    const filledStars = Math.round(product?.rating?.rate);
+
+    return (
+        <Container className="py-5 d-flex flex-column text-center align-items-center justify-content-center">
+            <Row className="py-5">
+                <Col lg={1}></Col>
+                <Col >
                     <Image className="product-image" src={product?.image}></Image>
                 </Col>
                 <Col className="text-start">
-                    <h3>{product?.title}</h3>
-                    <p>Price : ${product?.price}</p>
+                    <p className="product-category-heading">{(product?.category)}</p>
+                    <h3 className="">{product?.title}</h3>
+                    <Row>
+                        <Col>
+                            <div className="starRating">
+                                {[...Array(totalStars)].map((_, index) => (
+                                    <span
+                                        key={index}
+                                        className={index < filledStars ? "starFilled" : "starEmpty"}
+                                    >
+                                        ★
+                                    </span>
+
+                                ))}
+                                <p style={{ fontSize: "15px" }}>{product?.rating?.rate} / 5</p>
+                            </div>
+                        </Col>
+                        <Col>
+                            <p className="reviews">{product?.rating?.count} Reviews</p>
+                        </Col>
+                    </Row>
+
                     <p>{product?.description}</p>
-                    <p>Category : {product?.category}</p>
-                    <p> Rating : {product?.rating?.rate} / 5</p>
-                    <Button onClick={handleAddToCart} className={isAdded ? 'added-to-cart' : ''}>{isAdded ? 'Added to Cart!' : 'Add to Cart'}</Button>
-                    {isAdded && (
-                        <div className="pt-3 px-1">
-                        <Link to={"/cart"} className="">Go to cart</Link>
-                        </div>
-                    )}
+                    <p>Price : ${product?.price}</p>
+                    <Button variant="warning" onClick={handleAddToCart} className={isAdded ? 'added-to-cart' : ''}>{isAdded ? 'Added to Cart!' : 'Add to Cart'}</Button>
                 </Col>
+                <Col lg={1}></Col>
+            </Row>
+            <Row>
+                <h3 className="py-4">View Similar Products</h3>
+                <Container className="d-flex flex-column text-center justify-content-center">
+                <Row>
+                    {
+                        similarProducts?.map((product) =>
+                            <Products product={product}/>
+                        )
+                    }
+                </Row>
+            </Container>
             </Row>
         </Container>
     )
