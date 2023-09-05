@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
+import { Triangle } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 import Hero from "./Hero";
 import Products from "./Products";
@@ -39,35 +40,58 @@ export default function Home() {
     useEffect(() => {
         getAllProducts();
     }, []);
-
+    console.log(products)
     return (
-        <Container className="d-flex flex-column text-center justify-content-center">
-            <Hero />
-            <Row className="p-4">
-                <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>
-                    <p>All products</p>
-                </Col>
-                {
-                    categories?.map((element) => {
-                        const category = element.charAt(0).toUpperCase() + element.slice(1);
-                        return (
-                            <Col key={element} className={`m-2 categories ${activeCategory === element ? 'activeCategory' : ''}`} onClick={() => { getCategoryProduct(element); }}>
-                                <p>{category}</p>
+        <div>
+            {
+                (products.length === 0) ? (
+                    <div className="d-flex align-items-center text-center justify-content-center" style={{paddingTop : "10%"}}>
+                        <Triangle 
+                            height="80"
+                            width="80"
+                            color="#ffc107"
+                            ariaLabel="triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClassName=""
+                            visible={true}
+                        />
+                    </div>
+                ) : (
+                    <Container className="d-flex flex-column text-center justify-content-center">
+                        <Hero />
+                        {
+                            
+                        }
+                        <Row className="p-4">
+                            <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>
+                                <p>All products</p>
                             </Col>
-                        )
-                    }
-                    )
-                }
-            </Row>
-            <Container className="d-flex flex-column text-center justify-content-center">
-                <Row>
-                    {
-                        products?.map((product) =>
-                            <Products product={product} />
-                        )
-                    }
-                </Row>
-            </Container>
-        </Container>
+                            {
+                                categories?.map((element) => {
+                                    const category = element.charAt(0).toUpperCase() + element.slice(1);
+                                    return (
+                                        <Col key={element} className={`m-2 categories ${activeCategory === element ? 'activeCategory' : ''}`} onClick={() => { getCategoryProduct(element); }}>
+                                            <p>{category}</p>
+                                        </Col>
+                                    )
+                                }
+                                )
+                            }
+                        </Row>
+                        
+                        <Container className="d-flex flex-column text-center justify-content-center">
+                            <Row>
+                                {
+                                    products?.map((product) =>
+                                        <Products product={product} />
+                                    )
+                                }
+                            </Row>
+                        </Container>
+                    </Container>
+                )
+            }
+        </div>
+        
     )
 }

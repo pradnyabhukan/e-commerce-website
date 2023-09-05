@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { Triangle } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../App";
 import Products from "./Products";
@@ -44,55 +45,76 @@ export default function Product() {
 
     const totalStars = 5;
     const filledStars = Math.round(product?.rating?.rate);
+    console.log(product);
 
     return (
-        <Container className="py-5 d-flex flex-column text-center align-items-center justify-content-center">
-            <Row className="py-5">
-                <Col lg={1}></Col>
-                <Col >
-                    <Image className="product-image" src={product?.image}></Image>
-                </Col>
-                <Col className="text-start">
-                    <p className="product-category-heading">{(product?.category)}</p>
-                    <h3 className="">{product?.title}</h3>
-                    <Row>
-                        <Col>
-                            <div className="starRating">
-                                {[...Array(totalStars)].map((_, index) => (
-                                    <span
-                                        key={index}
-                                        className={index < filledStars ? "starFilled" : "starEmpty"}
-                                    >
-                                        ★
-                                    </span>
+        <div>
+            {
+            (product === undefined) ? (
+                <div className="d-flex justify-content-center" style={{paddingTop : "10%"}}>
+                        <Triangle 
+                            height="80"
+                            width="80"
+                            color="#ffc107"
+                            ariaLabel="triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClassName=""
+                            visible={true}
+                        />
+                    </div>
+            ) 
+            :(
+                <Container className="py-5 d-flex flex-column text-center align-items-center justify-content-center">
+                    <Row className="py-5">
+                        <Col lg={1}></Col>
+                        <Col >
+                            <Image className="product-image" src={product?.image}></Image>
+                        </Col>
+                        <Col className="text-start">
+                            <p className="product-category-heading">{(product?.category)}</p>
+                            <h3 className="">{product?.title}</h3>
+                            <Row>
+                                <Col>
+                                    <div className="starRating">
+                                        {[...Array(totalStars)].map((_, index) => (
+                                            <span
+                                                key={index}
+                                                className={index < filledStars ? "starFilled" : "starEmpty"}
+                                            >
+                                                ★
+                                            </span>
 
-                                ))}
-                                <p style={{ fontSize: "15px" }}>{product?.rating?.rate} / 5</p>
-                            </div>
+                                        ))}
+                                        <p style={{ fontSize: "15px" }}>{product?.rating?.rate} / 5</p>
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <p className="reviews">{product?.rating?.count} Reviews</p>
+                                </Col>
+                            </Row>
+
+                            <p>{product?.description}</p>
+                            <p>Price : ${product?.price}</p>
+                            <Button variant="warning" onClick={handleAddToCart} className={isAdded ? 'added-to-cart' : ''}>{isAdded ? 'Added to Cart!' : 'Add to Cart'}</Button>
                         </Col>
-                        <Col>
-                            <p className="reviews">{product?.rating?.count} Reviews</p>
-                        </Col>
+                        <Col lg={1}></Col>
                     </Row>
-
-                    <p>{product?.description}</p>
-                    <p>Price : ${product?.price}</p>
-                    <Button variant="warning" onClick={handleAddToCart} className={isAdded ? 'added-to-cart' : ''}>{isAdded ? 'Added to Cart!' : 'Add to Cart'}</Button>
-                </Col>
-                <Col lg={1}></Col>
-            </Row>
-            <Row>
-                <h3 className="py-4">View Similar Products</h3>
-                <Container className="d-flex flex-column text-center justify-content-center">
-                <Row>
-                    {
-                        similarProducts?.map((product) =>
-                            <Products product={product}/>
-                        )
-                    }
-                </Row>
-            </Container>
-            </Row>
-        </Container>
+                    <Row>
+                        <h3 className="py-4">View Similar Products</h3>
+                        <Container className="d-flex flex-column text-center justify-content-center">
+                        <Row>
+                            {
+                                similarProducts?.map((product) =>
+                                    <Products product={product}/>
+                                )
+                            }
+                        </Row>
+                    </Container>
+                    </Row>
+                </Container>
+            )
+        }
+        </div>
+        
     )
 }
