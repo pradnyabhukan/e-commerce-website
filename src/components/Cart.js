@@ -177,7 +177,7 @@ export default function Cart() {
                 Congratulations! Your order has been successfully placed.
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="primary" onClick={handleCloseModal}>
+                <Button variant="warning" onClick={handleCloseModal}>
                     Close
                 </Button>
                 </Modal.Footer>
