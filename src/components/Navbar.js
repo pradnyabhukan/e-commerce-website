@@ -12,7 +12,7 @@ export default function AppNavbar() {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Nav className="">
-                        <Link to={"/cart"} className="px-2 link">Cart 🛒</Link>
+                        <Link to={"/cart"} className="px-2 link"> 🛒 Cart</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

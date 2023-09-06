@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Card, Col, Container, Row } from "react-bootstrap"
 import { Triangle } from "react-loader-spinner";
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 import Hero from "./Hero";
 import Products from "./Products";
 import "./styles.css"
@@ -14,6 +15,7 @@ export default function Home() {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const [activeCategory, setActiveCategory] = useState(null);
+    const productsTab = useRef(null)
     const fetchApi = async (url) => {
         const data = await fetch(url);
         const cData = await data.json();
@@ -33,6 +35,18 @@ export default function Home() {
         setProducts(data);
         setActiveCategory(category);
     }
+
+    const scrollToProducts = () => {
+        if (productsTab && productsTab.current) {
+          const elementTopOffset = productsTab.current.getBoundingClientRect().top;
+          const scrollOffset = 80; // Adjust the value to scroll a little lower
+          window.scroll({
+            top: window.scrollY + elementTopOffset - scrollOffset,
+            behavior: 'smooth',
+          });
+        }
+      };
+
     useEffect(() => {
         getCategories();
     }, []);
@@ -58,11 +72,11 @@ export default function Home() {
                     </div>
                 ) : (
                     <Container className="d-flex flex-column text-center justify-content-center">
-                        <Hero />
+                        <Hero scroll = {scrollToProducts}/>
                         {
                             
                         }
-                        <Row className="p-4">
+                        <Row ref={productsTab} className="p-4">
                             <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>
                                 <p>All products</p>
                             </Col>

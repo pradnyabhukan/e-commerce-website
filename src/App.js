@@ -6,6 +6,8 @@ import Product from './components/Product';
 import Cart from './components/Cart';
 import {createContext, useState, useEffect } from 'react';
 import AppNavbar from './components/Navbar';
+import Footer from './components/Footer';
+import "../src/components/styles.css"
 
 export const CartContext = createContext();
 
@@ -23,6 +25,7 @@ function App() {
         <Route path='/product/:id' element={<Product/>}/>
         <Route path='/cart' element={<Cart/>} />
       </Routes>
+      <Footer/>
       </CartContext.Provider>
     </BrowserRouter>
   );

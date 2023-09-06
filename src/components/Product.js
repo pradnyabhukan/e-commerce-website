@@ -102,13 +102,13 @@ export default function Product() {
                     <Row>
                         <h3 className="py-4">View Similar Products</h3>
                         <Container className="d-flex flex-column text-center justify-content-center">
-                        <Row>
-                            {
-                                similarProducts?.map((product) =>
-                                    <Products product={product}/>
-                                )
-                            }
-                        </Row>
+                            <Row>
+                                {
+                                    similarProducts?.map((product) =>
+                                        <Products product={product}/>
+                                    )
+                                }
+                            </Row>
                     </Container>
                     </Row>
                 </Container>

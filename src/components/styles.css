@@ -1,114 +1,135 @@
-.categories{
-    cursor: pointer;
-    /* border: 1px solid black; */
+.categories {
+  cursor: pointer;
+  /* border: 1px solid black; */
 }
 
 .activeCategory {
-  font-weight: bold; 
+  font-weight: bold;
 }
 
-.card{
-    width: 80% !important;
-    /* height: 20rem; */
-    /* overflow: hidden; 
-    white-space: nowrap; 
-    text-overflow: ellipsis; */
+.card {
+  width: 80% !important;
 }
 
-.card-image{
-    width: 90%;
-    height: 14rem;
+.card-image {
+  width: 90%;
+  height: 14rem;
 }
 
-.card-title{
-    font-size: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.card-title {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.product-image{
-    width: 20rem;
-    height: 20rem;
+.product-image {
+  width: 20rem;
+  height: 20rem;
 }
 
-.link{
-    text-decoration: none; 
-    color: black;
+.link {
+  text-decoration: none;
+  color: black;
 }
 
 .added-to-cart {
-    /* background-color: #4caf50; */
-    transition: background-color 0.5s ease;
+  /* background-color: #4caf50; */
+  transition: background-color 0.5s ease;
+}
+
+@keyframes deleteHorizontalAnimation {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
   }
 
-  @keyframes deleteHorizontalAnimation {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
+  100% {
+    transform: translateX(40%);
+    opacity: 0;
   }
-  
-  /* Apply the horizontal animation to the table rows */
-  tr.delete-horizontal-animation {
-    animation-name: deleteHorizontalAnimation;
-    animation-duration: 1s; /* Adjust the duration as needed */
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
+}
 
-  .product-image{
-    padding: 30px;
-    background-color: white;
-    /* border: 1px solid black; */
-  }
+/* Apply the horizontal animation to the table rows */
+tr.delete-horizontal-animation {
+  animation-name: deleteHorizontalAnimation;
+  animation-duration: 1s;
+  /* Adjust the duration as needed */
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
 
-  .product-category-heading{
-    font-size: 14px;
-    margin-bottom: 0;
-  }
+.product-image {
+  padding: 30px;
+  background-color: white;
+  /* border: 1px solid black; */
+}
 
-  /* rating */
+.product-category-heading {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* rating */
 .starRating {
   display: inline-block;
 }
 
 .starFilled {
-  color: gold; /* Change this to your desired color */
+  color: gold;
+  /* Change this to your desired color */
 }
 
 .starEmpty {
-  color: gray; /* Change this to your desired color */
+  color: gray;
+  /* Change this to your desired color */
 }
 
-.reviews{
+.reviews {
   border-left: 2px solid gray;
   padding-left: 10px;
 }
-  
-  .hero-container {
-    height: 70vh;
-    /* width: 100vw; */
-    /* background-color: #f5f5f5;  */
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-  }
-  
-  .hero-row{
-    width: inherit;
-  }
-  
-  .hero-image{
-    width: 100%;
-  }
-  
-  .hero-title{
-    font-family: 'Dancing Script', cursive;
-    font-size: 60px;
-  }
-  
+
+.hero-container {
+  height: 70vh;
+  /* width: 100vw; */
+  /* background-color: #f5f5f5;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-row {
+  width: inherit;
+}
+
+.hero-image {
+  width: 100%;
+}
+
+.hero-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 60px;
+}
+
+.cart {
+  box-shadow: 5px 3px 3px rgb(172, 172, 172);
+  font-size: 14px;
+}
+
+.summary-text{
+  font-size: 16px;
+}
+
+.column-spacing {
+  margin-left: 8%; /* Adjust the margin as needed */
+}
+
+footer{
+  /* border-top: 1px solid gray; */
+  /* width: 100%; */
+}
+.quick-links-list {
+  list-style: none; /* Remove bullets */
+  padding-left: 0; /* Remove default left padding */
+}
