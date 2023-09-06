@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Button, ButtonGroup, Col, Container, Row, Table } from "react-bootstrap";
+import { Button, ButtonGroup, Col, Container, Modal, Row, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { CartContext } from "../App";
 
@@ -8,6 +8,8 @@ export default function Cart() {
     const [price, setPrice] = useState(0);
     const { cart, setCart } = useContext(CartContext);
     const [deletedItem, setDeletedItem] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [checkoutPrice, setCheckoutPrice] = useState(0);
 
     const handleDeleteAnimation = (index) => {
         setDeletedItem(index);
@@ -43,7 +45,10 @@ export default function Cart() {
             total += (element.item.price * element.qty);
         });
         total = parseFloat(total.toFixed(3));
+        
         setPrice(total);
+        let addShipping = (total + 8);
+        setCheckoutPrice(parseFloat(addShipping).toFixed(3));
         console.log("handle price called: ", price);
     }
 
@@ -54,15 +59,20 @@ export default function Cart() {
         setCart(temp);
     }
 
+    const handleCheckout = () =>{
+        window.sessionStorage.setItem('cart', JSON.stringify([]));
+        setCart([]);
+        setShowModal(true);
+    }
+    const handleCloseModal = () => {
+        setShowModal(false);
+      };
+
     useEffect(() => {
         handlePrice();
     }, [cart])
-    console.log(cart)
     return (
         <Container className="pt-5 cart-parent">
-            {/* <div className="text-center p-4">
-                <h1>Cart</h1>
-            </div> */}
             {
                 (cart.length === 0) ? (
                     <div className="container text-center">
@@ -143,8 +153,8 @@ export default function Cart() {
                                             <p className="summary-text">Standard Shipping : $08</p>
                                         </Row>
                                         <Row>
-                                            <p className="summary-text">Total Cost : $ {price + 8}</p>
-                                            <Button variant="warning">CHECKOUT</Button>
+                                            <p className="summary-text">Total Cost : $ {checkoutPrice}</p>
+                                            <Button variant="warning" onClick={handleCheckout}>CHECKOUT</Button>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -159,7 +169,19 @@ export default function Cart() {
                         </div>
                     )
             }
-
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                <Modal.Title>Order Placed</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                Congratulations! Your order has been successfully placed.
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="primary" onClick={handleCloseModal}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     )
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -35,7 +37,7 @@ export default function Footer() {
               </li>
             </ul>
           </Col>
-          <Col md={4}>
+          <Col md={3}>
             <h5>Follow Us</h5>
             <ul className="list-inline">
               <li className="list-inline-item">
@@ -54,6 +56,11 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+          </Col>
+          <Col md={1}>
+            <Link className="link" onClick={scrollToTop}>
+              <FontAwesomeIcon icon={faArrowUp} /> 
+            </Link>
           </Col>
         </Row>
         <hr />
