@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Products from "./Products";
+import ScrollToTopButton from "./ScrollToTopButton";
 import "./styles.css"
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
@@ -103,6 +104,7 @@ export default function Home() {
                     </Container>
                 )
             }
+            <ScrollToTopButton/>
         </div>
         
     )

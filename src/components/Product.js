@@ -4,6 +4,7 @@ import { Triangle } from "react-loader-spinner";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../App";
 import Products from "./Products";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function Product() {
     const { id } = useParams();
@@ -11,6 +12,10 @@ export default function Product() {
     const [product, setProduct] = useState();
     const [similarProducts, setSimilarProducts] = useState([]);
     const { cart, setCart } = useContext(CartContext);
+
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+      };
     const getProduct = async () => {
         const data = await fetch(`https://fakestoreapi.com/products/${id}`);
         const pData = await data.json();
@@ -31,12 +36,12 @@ export default function Product() {
     }
 
     const getCategoryProduct = async (c) => {
-        console.log("called")
         const data = await fetch(`https://fakestoreapi.com/products/category/${c}`);
         const sData = await data.json();
         const filteredProducts = sData.filter((item) => item.id!= id );
         const limitProducts = filteredProducts.slice(0, 4);
         setSimilarProducts(limitProducts);
+        scrollToTop();
     }
 
     useEffect(() => {
@@ -115,6 +120,7 @@ export default function Product() {
                 </Container>
             )
         }
+        <ScrollToTopButton/>
         </div>
         
     )

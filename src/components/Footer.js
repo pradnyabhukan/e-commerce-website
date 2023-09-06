@@ -37,7 +37,7 @@ export default function Footer() {
               </li>
             </ul>
           </Col>
-          <Col md={3}>
+          <Col md={4}>
             <h5>Follow Us</h5>
             <ul className="list-inline">
               <li className="list-inline-item">
@@ -56,11 +56,6 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-          </Col>
-          <Col md={1}>
-            <Link className="link" onClick={scrollToTop}>
-              <FontAwesomeIcon icon={faArrowUp} /> 
-            </Link>
           </Col>
         </Row>
         <hr />
