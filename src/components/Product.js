@@ -15,6 +15,7 @@ export default function Product() {
         const data = await fetch(`https://fakestoreapi.com/products/${id}`);
         const pData = await data.json();
         setProduct(pData);
+        setIsAdded(false);
         getCategoryProduct(pData.category)
     }
 

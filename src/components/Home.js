@@ -27,6 +27,7 @@ export default function Home() {
     }
     const getAllProducts = async () => {
         const data = await fetchApi("https://fakestoreapi.com/products");
+        setActiveCategory(null);
         setProducts(data);
     }
 
@@ -73,9 +74,6 @@ export default function Home() {
                 ) : (
                     <Container className="d-flex flex-column text-center justify-content-center">
                         <Hero scroll = {scrollToProducts}/>
-                        {
-                            
-                        }
                         <Row ref={productsTab} className="p-4">
                             <Col className={`m-2 categories ${activeCategory === null ? 'activeCategory' : ''}`} onClick={getAllProducts}>
                                 <p>All products</p>

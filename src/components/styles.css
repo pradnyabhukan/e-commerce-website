@@ -3,8 +3,29 @@
   /* border: 1px solid black; */
 }
 
+@keyframes borderAppear {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .activeCategory {
+  position: relative;
   font-weight: bold;
+}
+
+.activeCategory::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background-color: black;
+  animation: borderAppear 0.5s linear forwards; /* Adjust the animation duration as needed */
 }
 
 .card {
@@ -117,6 +138,11 @@ tr.delete-horizontal-animation {
   font-size: 14px;
 }
 
+.cart-parent{
+  min-height: 50vh;
+  flex-grow: 1;
+}
+
 .summary-text{
   font-size: 16px;
 }
@@ -128,6 +154,9 @@ tr.delete-horizontal-animation {
 footer{
   /* border-top: 1px solid gray; */
   /* width: 100%; */
+  background-color: rgb(248,249,250);
+  /* position: sticky; */
+  bottom: 0;
 }
 .quick-links-list {
   list-style: none; /* Remove bullets */

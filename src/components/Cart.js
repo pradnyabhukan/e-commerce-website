@@ -59,7 +59,7 @@ export default function Cart() {
     }, [cart])
     console.log(cart)
     return (
-        <Container className="pt-5">
+        <Container className="pt-5 cart-parent">
             {/* <div className="text-center p-4">
                 <h1>Cart</h1>
             </div> */}

@@ -7,9 +7,8 @@ export default function Footer() {
     window.scrollTo(0, 0);
   };
   return (
-    <footer className="custom-footer text-dark mt-5 pt-4">
+    <footer className="custom-footer text-dark mt-5 pt-4 text-start px-5">
       <Container className="text-start px-5">
-      <hr />
         <Row>
           <Col md={4}>
             <h5>Contact Us</h5>
